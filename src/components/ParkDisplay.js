@@ -8,7 +8,14 @@ class ParkDisplay extends Component {
 		const newNum = this.state.numberofCars + 1;
 		this.setState({ numberofCars: newNum });
 	}
+	reSize() {
+		
+	}
 	render() {
+		styles.circularDisplay.height = this.props.size;
+		styles.circularDisplay.width = this.props.size;
+		styles.circularDisplay.borderRadius = this.props.size / 2;
+		styles.circularDisplay.borderColor = this.props.color;
 		return (
 			<View>
 			<Button style={styles.circularDisplay} onPress={() => this.refreshNumber()} >
@@ -24,7 +31,7 @@ const styles = {
 		height: 70,
 		width: 70,
 		bottom: 8,
-		borderWidth: 1,
+		borderWidth: 3,
 		borderColor: 'lightgrey',
 		borderRadius: 35,
 		backgroundColor: '#f5f5f5',

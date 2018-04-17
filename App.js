@@ -21,7 +21,6 @@ export default class App extends Component {
     if (this.state.fontLoaded) {
       return (
         <DynamicBackground />
-       
       );
     }
     else {
