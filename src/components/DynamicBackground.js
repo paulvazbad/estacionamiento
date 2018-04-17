@@ -1,23 +1,49 @@
-import React, {Component} from 'react';
-import {Text, View} from 'react-native';
-import {Container, Header, Body, Right, Left, Title, Content } from 'native-base';
-import { Col, Row, Grid } from "react-native-easy-grid";
-import MainHeader from './MainHeader.js';
+import React, { Component } from 'react';
+import {  Text, View } from 'react-native';
+import { Content, Container, Header, Left, Right, Body, Title, Footer, FooterTab, Button } from 'native-base';
+import { Grid, Row } from 'react-native-easy-grid';
+import ParkDisplay from './ParkDisplay.js'
 
 export default class DynamicBackground extends Component {
-	state = {color:'#087f23'}
+  constructor(props) {
+    super(props);
+  }
+	state = { color: '#087f23' };
   render() {
     return (
-    	<View>
-        <MainHeader color={this.state.color}>
-          EstacionaTEC
-        </MainHeader>
+      <Container>
+        <Header style={{ backgroundColor: this.state.color }}>
+        <Left />
+          <Body>
+            <Title>
+            EstacionaTEC
+            </Title>
+          </Body>
+        <Right />
+        </Header>
+
         <Content>
-          <Grid style={{backgroundColor: this.state.color}}>
-          {this.props.children}
-          </Grid>
-        </Content>
+        <View style={styles.section}>
+          <View style={styles.section}>
+            <ParkDisplay />
+          </ View>
+          <View style={styles.section}>
+            <ParkDisplay />
+          </ View>
+          
+
         </View>
+        </Content>
+        </Container>
     );
   }
 }
+
+const styles = {
+  section: {
+    flex: 1,
+    justifyContent: 'space-around',
+    alignItems: 'center'
+
+  }
+};
