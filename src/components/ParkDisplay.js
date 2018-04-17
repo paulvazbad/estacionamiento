@@ -3,14 +3,14 @@ import { Text, View } from 'react-native';
 import { Button } from 'native-base';
 
 class ParkDisplay extends Component {
-	state = { numberofCars: 0 };
-	refreshNumber() {
-		const newNum = this.state.numberofCars + 1;
-		this.setState({ numberofCars: newNum });
+	state = { numberofCars: this.props.numberofCars };
+	getDerivedStateFromProps(nextProps, prevState) {
+		if (prevState.numberofCars === nextProps.numberofCars) {
+			return null;
+		}
+			return ({ numberofCars: nextProps.numberofCars });			
 	}
-	reSize() {
-		
-	}
+
 	render() {
 		styles.circularDisplay.height = this.props.size;
 		styles.circularDisplay.width = this.props.size;
@@ -18,7 +18,7 @@ class ParkDisplay extends Component {
 		styles.circularDisplay.borderColor = this.props.color;
 		return (
 			<View>
-			<Button style={styles.circularDisplay} onPress={() => this.refreshNumber()} >
+			<Button style={styles.circularDisplay} >
 				<Text> {this.state.numberofCars} </Text>
 			</Button>
 			</View>
