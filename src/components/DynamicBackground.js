@@ -1,20 +1,51 @@
 import React, { Component } from 'react';
-import {  Text, View, ScrollView } from 'react-native';
-import { Content, Container, Header, Left, Right, Body, Title, Footer, FooterTab, Button } from 'native-base';
+import { TouchableOpacity } from 'react-native';
+import { Content, Container, Header, Left, Right, Body, Title, H3, Button, Text } from 'native-base';
 import { Grid, Row, Col } from 'react-native-easy-grid';
 import ParkDisplay from './ParkDisplay.js';
 
 export default class DynamicBackground extends Component {
-	state = { color: '#087f23', numberofCars: 0 };
+	state = { color: ['#087f23', '#087f23', '#087f23'], numberofCars: [0, 0, 0] };
   refreshNumber() {
     const newNum = this.state.numberofCars + 1;
     this.setState({ color: this.state.color, numberofCars: newNum });
+  }
+  asignColor(carAc) {
+    let colAc = '';
+     if (carAc > 200) {
+      colAc = '#d32f2f';
+    } else if (carAc > 140) {
+      colAc = '#FDD835';
+    } else {
+      colAc = '#087f23';
+    }
+    return colAc;
+  }
+  calcCarros() {
+    let horAct = new Date().getHours();
+    horAct -= 9;
+    horAct *= 60;
+    horAct += new Date().getMinutes();
+    let carAc=[0, 0, 0];
+    let colAc = ['#087f23', '#087f23', '#087f23'];
+    carAc[0] = Math.round((235 / (1 + (235 * Math.exp(-0.235 * (horAct - 10))))));
+    carAc[1] = Math.round((235 / (1 + (235 * Math.exp(-0.235 * (horAct))))));
+    carAc[2] = Math.round((235 / (1 + (235 * Math.exp(-0.235 * (horAct + 10))))));
+    colAc[0] = this.asignColor(carAc[0]);
+    colAc[1] = this.asignColor(carAc[1]);
+    colAc[2] = this.asignColor(carAc[2]);
+   
+    this.setState({ color: colAc, numberofCars: carAc });
+  }
+  actCarros() {
+    console.log('Los actualizo perro');
+    this.calcCarros();
   }
 
   render() {
     return (
       <Container>
-            <Header style={{ backgroundColor: this.state.color }}>
+            <Header style={{ backgroundColor: this.state.color[1] }}>
         <Left />
           <Body>
             <Title>
@@ -26,25 +57,56 @@ export default class DynamicBackground extends Component {
 
         <Content>
           <Grid>
-            <Row style={{ backgroundColor: '#635DB7', height: 300 }} >
-              <Col style={styles.LeftSection}>
-                <ParkDisplay size={50} color={this.state.color} numberofCars={0} />
+            <Row style={{ height: 300 }} >
+              <Col style={styles.section} size={30}>
+                <Row size={70} style={styles.section}>
+                <H3>Hace 10 min: </H3>
+                </Row>
+                <Row size={30} style={{ alignItems: 'center' }}>
+                <ParkDisplay 
+                size={80} color={this.state.color[0]} 
+                numberofCars={this.state.numberofCars[0]} 
+                textSize={30} 
+                />
+                </Row>
               </Col>
 
-              <Col>
-                <Row>
-                </Row>
-                <Row style={styles.MiddleSection}>
-                <ParkDisplay size={120} color={this.state.color} numberofCars={0} />
+              <Col size={40}>
+                <Row size={30} />
+                <Row style={styles.MiddleSection} size={70}>
+                <ParkDisplay 
+                size={130} color={this.state.color[1]} 
+                numberofCars={this.state.numberofCars[1]} 
+                textSize={80} 
+                />
                 </Row>
               </Col>
               
-              <Col style={styles.RightSection}>
-                <ParkDisplay size={50} color={this.state.color} numberofCars={0} />
+              <Col style={styles.section} size={30}>
+              <Row size={70} style={styles.section}>
+                <H3> En 10 min: </H3>
+              </Row>
+              <Row size={30} style={{ alignItems: 'center' }}>
+                <ParkDisplay 
+                size={80} 
+                color={this.state.color[2]} 
+                numberofCars={this.state.numberofCars[2]} 
+                textSize={30} 
+                />
+              </Row>
               </Col>
 
             </Row>
-            <Row style={{ backgroundColor: '#00CE9F', height: 300 }}></Row>
+
+            <Row style={{ justifyContent: 'center' }} >
+              <Button rounded bordered dark>
+              <TouchableOpacity onPress={() => this.actCarros()}>
+                <Text style={{ fontSize: 20 }}> Actualizar </Text>
+              </TouchableOpacity> 
+              </Button> 
+            </Row>
+            
+            <Row style={{ height: 250 }}></Row>
           </Grid>
         </Content>
 
@@ -54,18 +116,10 @@ export default class DynamicBackground extends Component {
 }
 
 const styles = {
-  RightSection: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    alignItems: 'flex-end',
-    backgroundColor: '#435DA7'
-
-  },
-  LeftSection: {
-   flexDirection: 'row',
-    justifyContent: 'space-around',
-    alignItems: 'flex-end',
-    backgroundColor: '#9fa8da'
+  section: {
+   flexDirection: 'column',
+    justifyContent: 'flex-end',
+    alignItems: 'center',
   },
   MiddleSection: {
    flexDirection: 'row',

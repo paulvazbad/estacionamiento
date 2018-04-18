@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 import { Text, View } from 'react-native';
-import { Button } from 'native-base';
+import { AnimatedCircularProgress } from 'react-native-circular-progress';
+import { H1 } from 'native-base';
 
 class ParkDisplay extends Component {
 	state = { numberofCars: this.props.numberofCars };
-	getDerivedStateFromProps(nextProps, prevState) {
-		if (prevState.numberofCars === nextProps.numberofCars) {
-			return null;
+	static getDerivedStateFromProps(nextProps, prevState) {
+		if (nextProps.numberofCars !== prevState.numberofCars) {
+			return ({ numberofCars: nextProps.numberofCars });
 		}
-			return ({ numberofCars: nextProps.numberofCars });			
+		return null;					
 	}
 
 	render() {
@@ -16,12 +17,28 @@ class ParkDisplay extends Component {
 		styles.circularDisplay.width = this.props.size;
 		styles.circularDisplay.borderRadius = this.props.size / 2;
 		styles.circularDisplay.borderColor = this.props.color;
+
+		
 		return (
 			<View>
-			<Button style={styles.circularDisplay} >
-				<Text> {this.state.numberofCars} </Text>
-			</Button>
-			</View>
+		<AnimatedCircularProgress
+			ref='circularProgress'
+			size={this.props.size}
+			width={5}
+			fill={(this.state.numberofCars * 100) / 235}
+			tintColor={this.props.color}
+		backgroundColor="#3d5875" 
+		>
+		{
+			() => (
+			<Text style={{ fontSize: this.props.textSize }}>
+			{ this.state.numberofCars }
+			</Text>
+			)
+
+		}
+		</AnimatedCircularProgress>
+		</View>
 		);
 	}
 }
@@ -40,6 +57,6 @@ const styles = {
 		shadowColor: '#000000',
 		shadowOffset: { width: 0, height: 5 },
 		shadowOpacity: 0.5
-	}
+	},
 };
 export default ParkDisplay;
