@@ -6,6 +6,9 @@ import ParkDisplay from './ParkDisplay.js';
 
 export default class DynamicBackground extends Component {
 	state = { color: ['#087f23', '#087f23', '#087f23'], numberofCars: [0, 0, 0] };
+  componentWillMount() {
+    this.actCarros();
+  }
   refreshNumber() {
     const newNum = this.state.numberofCars + 1;
     this.setState({ color: this.state.color, numberofCars: newNum });
@@ -46,13 +49,13 @@ export default class DynamicBackground extends Component {
     return (
       <Container>
             <Header style={{ backgroundColor: this.state.color[1] }}>
-        <Left />
-          <Body>
+        <Left style={{ flex: 1 }} />
+          <Body style={{ flex: 1 }}>
             <Title>
             EstacionaTEC
             </Title>
           </Body>
-        <Right />
+        <Right style={{ flex: 1 }} />
         </Header>
 
         <Content>
@@ -60,38 +63,39 @@ export default class DynamicBackground extends Component {
             <Row style={{ height: 300 }} >
               <Col style={styles.section} size={30}>
                 <Row size={70} style={styles.section}>
-                <H3>Hace 10 min: </H3>
+                <H3>-10 min: </H3>
                 </Row>
                 <Row size={30} style={{ alignItems: 'center' }}>
                 <ParkDisplay 
                 size={80} color={this.state.color[0]} 
                 numberofCars={this.state.numberofCars[0]} 
-                textSize={30} 
+                textSize={35} 
                 />
                 </Row>
               </Col>
 
               <Col size={40}>
-                <Row size={30} />
+                <Row size={30} style={styles.section}>
+                </Row>
                 <Row style={styles.MiddleSection} size={70}>
                 <ParkDisplay 
                 size={130} color={this.state.color[1]} 
                 numberofCars={this.state.numberofCars[1]} 
-                textSize={80} 
+                textSize={75} 
                 />
                 </Row>
               </Col>
               
               <Col style={styles.section} size={30}>
               <Row size={70} style={styles.section}>
-                <H3> En 10 min: </H3>
+                <H3> +10 min: </H3>
               </Row>
               <Row size={30} style={{ alignItems: 'center' }}>
                 <ParkDisplay 
                 size={80} 
                 color={this.state.color[2]} 
                 numberofCars={this.state.numberofCars[2]} 
-                textSize={30} 
+                textSize={35} 
                 />
               </Row>
               </Col>

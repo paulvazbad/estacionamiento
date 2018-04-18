@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { Text, View } from 'react-native';
 import Expo from 'expo';
-import { Container, Footer, Button, FooterTab } from 'native-base';
-import { Row } from 'react-native-easy-grid';
 import DynamicBackground from './src/components/DynamicBackground.js';
 
 export default class App extends Component {
@@ -22,13 +20,11 @@ export default class App extends Component {
       return (
         <DynamicBackground />
       );
-    }
-    else {
-      return (
-        <View>
-          <Text>Font loading </Text>
-        </View>
-      );
-    }
+    } 
+    return (
+      <View>
+        <Text>Font loading </Text>
+      </View>
+    );
   }
 }
