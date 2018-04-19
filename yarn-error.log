@@ -1,5 +1,5 @@
 Arguments: 
-  D:\Nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js
+  D:\Nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js add victory-native
 
 PATH: 
   C:\Users\pev\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\local\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Users\pev\bin;C:\ispLEVER_Classic2_0\ispcpld\bin;C:\ispLEVER_Classic2_0\ispFPGA\bin\nt;C:\ispLEVER_Classic2_0\active-hdl\BIN;C:\ProgramData\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\Microsoft SQL Server\130\Tools\Binn;C:\Program Files\LLVM\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0;C:\Program Files\Git\cmd;C:\Program Files\Java\jdk1.8.0_101\bin;C:\Program Files (x86)\IVI Foundation\VISA\WinNT\Bin;C:\Program Files (x86)\CodeBlocks\MinGW\bin;C:\Program Files (x86)\Wolfram Research\WolframScript;C:\Program Files (x86)\GtkSharp\2.12\bin;D:\Nodejs;C:\Program Files\PuTTY;C:\Program Files (x86)\Yarn\bin;C:\Users\pev\Anaconda2;C:\Users\pev\Anaconda2\Library\mingw-w64\bin;C:\Users\pev\Anaconda2\Library\usr\bin;C:\Users\pev\Anaconda2\Library\bin;C:\Users\pev\Anaconda2\Scripts;D:\ProgramFilesD\Anaconda;D:\ProgramFilesD\Anaconda\Scripts;D:\ProgramFilesD\Anaconda\Library\bin;C:\RailsInstaller\Git\cmd;C:\RailsInstaller\Ruby2.3.0\bin;C:\Users\pev\AppData\Local\Microsoft\WindowsApps;C:\Users\pev\AppData\Local\atom\bin;C:\Users\pev\AppData\Local\Microsoft\WindowsApps;C:\Program Files\Heroku\bin;C:\Users\pev\AppData\Roaming\npm;D:\Android\sdk\platform-tools;C:\Users\pev\AppData\Local\Yarn\bin;C:\Program Files\Git\usr\bin\vendor_perl;C:\Program Files\Git\usr\bin\core_perl
@@ -27,7 +27,9 @@ npm manifest:
       "react": "16.3.0-alpha.1",
       "react-native": "https://github.com/expo/react-native/archive/sdk-26.0.0.tar.gz",
       "react-native-circular-progress": "^0.2.0",
-      "react-native-easy-grid": "^0.1.17"
+      "react-native-easy-grid": "^0.1.17",
+      "react-native-pathjs-charts": "0.0.34",
+      "react-native-svg": "^6.3.1"
     },
     "devDependencies": {
       "babel-eslint": "^8.2.3",
@@ -633,7 +635,7 @@ Lockfile:
     version "1.0.1"
     resolved "https://registry.yarnpkg.com/arrify/-/arrify-1.0.1.tgz#898508da2226f380df904728456849c1501a4b0d"
   
-  art@^0.10.0:
+  art@^0.10.0, art@^0.10.1:
     version "0.10.2"
     resolved "https://registry.yarnpkg.com/art/-/art-0.10.2.tgz#55c3738d82a3a07e0623943f070ebe86297253d9"
   
@@ -4456,6 +4458,13 @@ Lockfile:
   react-native-branch@2.0.0-beta.3:
     version "2.0.0-beta.3"
     resolved "https://registry.yarnpkg.com/react-native-branch/-/react-native-branch-2.0.0-beta.3.tgz#2167af86bbc9f964bd45bd5f37684e5b54965e32"
+  
+  react-native-circular-progress@^0.2.0:
+    version "0.2.0"
+    resolved "https://registry.yarnpkg.com/react-native-circular-progress/-/react-native-circular-progress-0.2.0.tgz#b6ad5aa89e473cd796582dcdab4ba6e91ee9575b"
+    dependencies:
+      art "^0.10.1"
+      prop-types "^15.6.0"
   
   react-native-drawer@2.5.0:
     version "2.5.0"

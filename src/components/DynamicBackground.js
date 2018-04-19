@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { TouchableOpacity } from 'react-native';
-import { Content, Container, Header, Left, Right, Body, Title, H3, Button, Text } from 'native-base';
+import { Content, Container, Header, Left, Right, Body, Title, H3, Button, Text, H2 } from 'native-base';
 import { Grid, Row, Col } from 'react-native-easy-grid';
 import ParkDisplay from './ParkDisplay.js';
+import StockLineChartBasic from './StockLineChartBasic.js';
 
 export default class DynamicBackground extends Component {
 	state = { color: ['#087f23', '#087f23', '#087f23'], numberofCars: [0, 0, 0] };
@@ -60,9 +61,10 @@ export default class DynamicBackground extends Component {
 
         <Content>
           <Grid>
-            <Row style={{ height: 300 }} >
+
+            <Row style={{ height: 200 }} >
               <Col style={styles.section} size={30}>
-                <Row size={70} style={styles.section}>
+                <Row size={40} style={styles.section}>
                 <H3>-10 min: </H3>
                 </Row>
                 <Row size={30} style={{ alignItems: 'center' }}>
@@ -75,7 +77,7 @@ export default class DynamicBackground extends Component {
               </Col>
 
               <Col size={40}>
-                <Row size={30} style={styles.section}>
+                <Row size={15} style={styles.section}>
                 </Row>
                 <Row style={styles.MiddleSection} size={70}>
                 <ParkDisplay 
@@ -87,7 +89,7 @@ export default class DynamicBackground extends Component {
               </Col>
               
               <Col style={styles.section} size={30}>
-              <Row size={70} style={styles.section}>
+              <Row size={40} style={styles.section}>
                 <H3> +10 min: </H3>
               </Row>
               <Row size={30} style={{ alignItems: 'center' }}>
@@ -110,7 +112,9 @@ export default class DynamicBackground extends Component {
               </Button> 
             </Row>
             
-            <Row style={{ height: 250 }}></Row>
+            <Row>
+            <StockLineChartBasic color={this.state.color[1]} />
+            </Row>
           </Grid>
         </Content>
 
